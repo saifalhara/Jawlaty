@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Jawlaty.Models.Announcement>
+
+@{
+    ViewData["Title"] = "Announcements";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="text-end">
+    <div class="m-4">
+        <a class="btn btn-primary" asp-controller="Admin" asp-action="CreateAnnouncement">Add New Announcement</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Short Description</th>
+                <th scope="col">Long Description</th>
+                <th scope="col">View</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count(); i++)
+            {
+                var announcement = Model.ElementAt(i);
+                <tr class="@((i % 2 == 0) ? "table-active" : "table-light")">
+                    <th scope="row">@announcement.Id</th>
+                    <td>@announcement.Title</td>
+                    <td>@announcement.ShortDescription</td>
+                    <td>@announcement.LongDescription</td>
+
+                    <td>
+                        <a class="btn btn-success" asp-controller="Admin" asp-action="AnnouncementDetails" asp-route-id="@announcement.Id">View</a>
+                    </td>
+
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Admin" asp-action="EditAnnouncement" asp-route-id="@announcement.Id">Edit</a>
+                    </td>
+
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-@announcement.Id">Delete</button>
+                    </td>
+                </tr>
+
+                <!-- Delete Modal -->
+                <div class="modal fade" id="myModal-@announcement.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-@announcement.Id" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel-@announcement.Id">Delete Announcement</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this announcement?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <form asp-controller="Admin" asp-action="DeleteItemConfirmed" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@announcement.Id" />
+                                    <input type="hidden" name="type" value="announcement" />
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt me-2"></i>Delete
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </tbody>
+    </table>
+</div>

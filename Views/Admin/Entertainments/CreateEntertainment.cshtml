@@ -1,0 +1,29 @@
+﻿@model Jawlaty.Models.Entertainment
+
+@{
+    ViewData["Title"] = "Create Entertainment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container my-4">
+    <h2>Create New Entertainment</h2>
+    <form asp-action="CreateEntertainment" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+            <label for="Title">Title</label>
+            <input type="text" class="form-control" id="Title" name="Title" required />
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="LongDescription">Description</label>
+            <textarea class="form-control" id="Description" name="Description" rows="5" required></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <label for="Image">Image</label>
+            <input type="file" class="form-control" id="Image" name="ImageFile" />
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary">Create Entertainment</button>
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Jawlaty.Models.UserFavorite>
+
+@{
+    ViewData["Title"] = "Your Favorites";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<hr />
+<br />
+<br />
+<br />
+
+<div class="container my-4">
+    <h2>Your Favorites</h2>
+
+    @if (!Model.Any())
+    {
+        <p>You have no favorites yet.</p>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var favorite in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            @if (favorite.Hotel != null)
+                            {
+                                <img class="card-img-top" src="@favorite.Hotel.ImageUrl" alt="Restaurant Image" style="height: 200px; object-fit: cover;">
+                                <h5 class="card-title">Hotel: @favorite.Hotel.Title</h5>
+                                <p class="card-text">@favorite.Hotel.Description</p>
+                                <a href="@Url.Action("ViewHotel", "Hotel", new { id = favorite.HotelId })" class="btn btn-primary">View Hotel</a>
+                            }
+                            else if (favorite.Restaurant != null)
+                            {
+                                <img class="card-img-top" src="@favorite.Restaurant.ImageUrl" alt="Restaurant Image" style="height: 200px; object-fit: cover;">
+                                <h5 class="card-title">Restaurant: @favorite.Restaurant.Title</h5>
+                                <p class="card-text">@favorite.Restaurant.Description</p>
+                                <a href="@Url.Action("ViewRestaurant", "Restaurant", new { id = favorite.RestaurantId })" class="btn btn-primary">View Restaurant</a>
+                            }
+                            else if (favorite.Entertainment != null)
+                            {
+                                <img class="card-img-top" src="@favorite.Entertainment.ImageUrl" alt="Restaurant Image" style="height: 200px; object-fit: cover;">
+                                <h5 class="card-title">Entertainment: @favorite.Entertainment.Title </h5>
+                                <p class="card-text">@favorite.Entertainment.Description</p>
+                                <a href="@Url.Action("EntertainmentDetails", "Entertainment", new { id = favorite.EntertainmentId })" class="btn btn-primary">View Entertainment</a>
+                            }
+                            else if (favorite.Announcement != null)
+                            {
+                                <img class="card-img-top" src="@favorite.Announcement.ImageUrl" alt="Restaurant Image" style="height: 200px; object-fit: cover;">
+                                <h5 class="card-title">Announcement: @favorite.Announcement.Title</h5>
+                                <p class="card-text">@favorite.Announcement.ShortDescription </p>
+                                <a href="@Url.Action("AnnouncementDetails", "Announcement", new { id = favorite.AnnouncementId })" class="btn btn-primary">View Announcement</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,232 @@
+﻿@model Jawlaty.Models.Entertainment 
+
+@{
+    ViewData["Title"] = "View Entertainment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Get the favorite status from ViewData
+    bool isFavorite = ViewBag.IsFavorite;
+}
+
+
+<style>
+    .favorite-icon {
+        position: relative;
+    }
+
+    .rounded-heart {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #f8f9fa;
+        color: #6c757d;
+        line-height: 40px;
+        text-align: center;
+        font-size: 1.5rem;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+    }
+
+        .rounded-heart.text-danger {
+            color: #dc3545;
+        }
+
+        .rounded-heart:hover {
+            background-color: #e2e6ea;
+            color: #343a40;
+        }
+</style>
+
+<br />
+<br />
+<br />
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-start">
+        <h2>@Model.Title</h2>
+
+        <!-- Favorite Heart Icon inside a rounded button -->
+        <div id="favorite-icon" class="favorite-icon">
+            @if (isFavorite)
+            {
+                <span class="rounded-heart fa fa-heart text-danger" data-favorite="true" style="cursor: pointer;" title="Remove from favorites"></span>
+            }
+            else
+            {
+                <span class="rounded-heart fa fa-heart text-secondary" data-favorite="false" style="cursor: pointer;" title="Add to favorites"></span>
+            }
+        </div>
+    </div>
+
+
+
+    <div class="mt-4">
+        @if (Model.ImageUrl != null)
+        {
+            <img src="@Model.ImageUrl" alt="Entertainment Image" style="max-width: 400px;" />
+        }
+        <p class="mt-3"><strong>Description:</strong> @Model.Description</p>
+    </div>
+
+    <!-- Display current ratings and comments -->
+    <div class="mt-4">
+        <h4>Average Rating: @Model.AverageRating.ToString("0.0")</h4>
+        <div class="mb-3">
+            @for (int i = 1; i <= 5; i++)
+            {
+                if (i <= Math.Round(Model.AverageRating))
+                {
+                    <small class="fa fa-star text-primary"></small>
+                }
+                else
+                {
+                    <small class="fa fa-star text-secondary"></small>
+                }
+            }
+        </div>
+
+        <div class="mt-4">
+            <h5>Comments:</h5>
+            @if (Model.Ratings != null && Model.Ratings.Any())
+            {
+                <ul>
+                    @foreach (var rating in Model.Ratings)
+                    {
+                        <ul>
+                            <strong>@rating.User.UserName:</strong> @rating.Comment
+                            <div>
+                                @for (int i = 1; i <= rating.RatingValue; i++)
+                                {
+                                    <small class="fa fa-star text-primary"></small>
+                                }
+                                <small>(@rating.RatingValue stars)</small>
+                            </div>
+                        </ul>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No ratings yet.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Form to add new rating and comment -->
+    <div class="mt-4">
+        <h4>Rate this Entertainment:</h4>
+
+        <form asp-action="AddRating" method="post">
+            <div class="mb-3">
+                <label for="ratingValue">Your Rating:</label>
+                <div class="star-rating">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <span class="fa fa-star text-secondary" data-value="@i"></span>
+                    }
+                </div>
+                <input type="hidden" id="ratingValue" name="ratingValue" value="0" />
+            </div>
+
+            <div class="mb-3">
+                <label for="comment">Your Comment:</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+            </div>
+
+            <input type="hidden" name="EntertainmentId" value="@Model.Id" />
+            <button type="submit" class="btn btn-primary">Submit Rating</button>
+        </form>
+    </div>
+
+    <div class="mt-4">
+        <button onclick="window.history.back();" class="btn btn-secondary">Back</button>
+    </div>
+</div>
+
+<!-- Add some JavaScript for handling star rating -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Handle star click
+        $('.star-rating .fa-star').on('click', function () {
+            var ratingValue = $(this).data('value');
+            $('#ratingValue').val(ratingValue); // Set hidden field value
+
+            // Highlight selected stars
+            $('.star-rating .fa-star').each(function (index) {
+                if (index < ratingValue) {
+                    $(this).addClass('text-primary').removeClass('text-secondary');
+                } else {
+                    $(this).addClass('text-secondary').removeClass('text-primary');
+                }
+            });
+        });
+
+        // Handle hover (optional: gives the user immediate visual feedback)
+        $('.star-rating .fa-star').on('mouseenter', function () {
+            var ratingValue = $(this).data('value');
+
+            // Highlight hovered stars
+            $('.star-rating .fa-star').each(function (index) {
+                if (index < ratingValue) {
+                    $(this).addClass('text-primary').removeClass('text-secondary');
+                } else {
+                    $(this).addClass('text-secondary').removeClass('text-primary');
+                }
+            });
+        }).on('mouseleave', function () {
+            // Reset stars based on the current rating value in the hidden input
+            var ratingValue = $('#ratingValue').val();
+
+            $('.star-rating .fa-star').each(function (index) {
+                if (index < ratingValue) {
+                    $(this).addClass('text-primary').removeClass('text-secondary');
+                } else {
+                    $(this).addClass('text-secondary').removeClass('text-primary');
+                }
+            });
+        });
+
+
+
+
+
+          $('#favorite-icon .fa').on('click', function () {
+            var isFavorite = $(this).data('favorite');
+            var newFavoriteStatus = !isFavorite;
+
+            // Update the heart icon on the page
+            if (newFavoriteStatus) {
+                $(this).removeClass('fa-heart-o text-secondary').addClass('fa-heart text-danger');
+            } else {
+                $(this).removeClass('fa-heart text-danger').addClass('fa-heart-o text-secondary');
+            }
+            $(this).data('favorite', newFavoriteStatus);
+
+            // AJAX request to update the favorite status
+            $.ajax({
+                url: '/Entertainment/ToggleFavorite',
+                method: 'POST',
+                data: {
+                    entertainmentId: @Model.Id,
+                    isFavorite: newFavoriteStatus
+                },
+                success: function (response) {
+                    console.log('Favorite status updated successfully');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error updating favorite status:', error);
+                    // Optionally revert the visual change in case of error
+                    $(this).data('favorite', isFavorite); // Revert to the previous state
+                    if (isFavorite) {
+                        $(this).removeClass('fa-heart text-danger').addClass('fa-heart-o text-secondary');
+                    } else {
+                        $(this).removeClass('fa-heart-o text-secondary').addClass('fa-heart text-danger');
+                    }
+                }
+            });
+        });
+
+    });
+</script>

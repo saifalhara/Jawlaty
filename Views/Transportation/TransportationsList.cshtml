@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Jawlaty.Models.Transportation>
+
+@{
+    ViewData["Title"] = "Transportation Articles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Transportations</h6>
+            <h1 class="mb-5">Articles for Selected City</h1>
+        </div>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-warning">@ViewBag.Message</div>
+        }
+        else
+        {
+            <div class="row g-5">
+                @foreach (var transportation in Model)
+                {
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 200px;">
+                        <div class="position-relative h-100">
+                            <div class="content">
+                                <h1 class="mb-4">
+                                    <span class="text-primary">@transportation.Title</span>
+                                </h1>
+
+                                <!-- Truncate the content to 200 characters or first 3 rows -->
+                                <p class="mb-4">
+                                    @{
+                                        var truncatedContent = transportation.Content.Length > 200 ?
+                                                               transportation.Content.Substring(0, 200) + "..." :
+                                                               transportation.Content;
+                                    }
+                                    @truncatedContent
+                                </p>
+
+                                <a class="btn btn-primary py-3 px-5 mt-2" href="@Url.Action("ViewTransportation", "Transportation", new { id = transportation.Id })">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

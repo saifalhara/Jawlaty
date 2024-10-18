@@ -1,0 +1,20 @@
+﻿@model Jawlaty.Models.Transportation
+
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr />
+<br />
+<br />
+<br />
+
+<div class="container py-5">
+    <div class="container">
+        <h1 class="mb-4 text-primary">@Model.Title</h1>
+        <p>@Model.Content</p>
+    </div>
+    <div class="mt-4">
+        <button onclick="window.history.back();" class="btn btn-secondary">Back</button>
+    </div>
+</div>

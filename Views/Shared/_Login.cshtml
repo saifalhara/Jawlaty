@@ -1,0 +1,48 @@
+﻿
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Login 10</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/LoginStyle/css/style.css">
+
+</head>
+<body class="img js-fullheight" style="background-image: url('../img/bg.jpg'); ">
+    <script>function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password-field");
+            var toggleButton = document.querySelector(".toggle-password");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.classList.remove("fa-eye");
+                toggleButton.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                toggleButton.classList.remove("fa-eye-slash");
+                toggleButton.classList.add("fa-eye");
+            }
+        }</script>
+
+
+    <script src="~/LoginStyle/js/jquery.min.js"></script>
+    <script src="~/LoginStyle/js/popper.js"></script>
+    <script src="~/LoginStyle/js/bootstrap.min.js"></script>
+    <script src="~/LoginStyle/js/main.js"></script>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+
+</body>
+</html>
+
+

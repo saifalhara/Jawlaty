@@ -1,0 +1,67 @@
+﻿
+@model Jawlaty.Auth.DTO.LoginDTO ;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Login</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap p-0">
+                    <h3 class="mb-4 text-center">Have an account?</h3>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form class="signin-form" asp-controller="Auth" asp-action="Authenticate" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="Username" placeholder="Username" required>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <input id="password-field" name="Password" type="password" class="form-control" placeholder="Password" required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" onclick="togglePasswordVisibility()"></span>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control submit px-3" style="background-color: #DB6400; color: white;">Sign In</button>
+                        </div>
+                        <div class="form-group d-md-flex">
+
+
+                            <div class="w-50 text-md-right">
+                                <a href="#" style="color: #fff">Forgot Password</a>
+                            </div>
+                        </div>
+                    </form>
+
+                    <p class="w-100 text-center">&mdash;    Don't have an account? &mdash;</p>
+                    <div class="social d-flex text-center">
+                        <a asp-controller="Auth" asp-action="SignUp" class="px-2 py-2 mr-md-1 rounded" style="background-color: #DB6400; color: white;"><span class="ion-logo-facebook mr-2"></span> Create an Account</a>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@if (!string.IsNullOrEmpty(ViewData["InvalidLogin"] as string))
+{
+    <div class="text-danger">
+        @Html.Display(ViewData["InvalidLogin"] as string)
+    </div>
+}
+
+
+

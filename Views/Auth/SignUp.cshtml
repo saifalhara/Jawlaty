@@ -1,0 +1,50 @@
+﻿@using Jawlaty.Auth.DTO;
+@model RegisterUserDTO  
+
+@{
+    ViewData["Title"] = "Sign Up";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Sign Up</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+
+            <div class="col-md-6 col-lg-4">
+                <div class="signup-wrap p-0">
+                    <h3 class="mb-4 text-center" style="color: white;">Create an Account</h3>
+                    <form class="signup-form" asp-controller="Auth" asp-action="SignUp" method="post">
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                        <div class="form-group">
+                            <input type="text" asp-for="Username" class="form-control" name="username" placeholder="Username" required>
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="form-group">
+                            <input type="email" asp-for="Email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="form-group">
+                            <input id="password-field" asp-for="Password" name="password" type="password" class="form-control" placeholder="Password" required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" onclick="togglePasswordVisibility()"></span>
+                        </div>
+                      
+                        <div class="form-group">
+                            <button type="submit" class="form-control submit px-3" style="background-color: #DB6400; color: white;">Sign Up</button>
+                        </div>
+                        <div class="form-group">
+                            <p class="w-100 text-center">
+                                Already have an account?
+                                <a asp-controller="Auth" asp-action="Index" style="color: #DB6400;">Sign In</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

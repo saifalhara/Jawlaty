@@ -1,0 +1,25 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Choose City";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr />
+<br />
+<br />
+<br />
+
+<div class="container my-4">
+    <h2>Select a City to View Transportations</h2>
+    <form asp-action="GetTransportationsByCity" method="post">
+        <div class="form-group">
+            <label for="CityId">City</label>
+            <select class="form-control" id="CityId" name="cityId" asp-items="ViewBag.Cities" required>
+                <option value="">Select a City</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>

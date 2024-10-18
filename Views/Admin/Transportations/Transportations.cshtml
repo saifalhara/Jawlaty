@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Jawlaty.Models.Transportation>
+
+@{
+    ViewData["Title"] = "Transportations";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="text-end">
+    <div class="m-4">
+        <a class="btn btn-primary" asp-controller="Admin" asp-action="CreateTransportation">Add New Transportation</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">City</th>
+                <th scope="col">Content</th>
+                <th scope="col">View</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count(); i++)
+            {
+                var transportation = Model.ElementAt(i);
+                <tr class="@((i % 2 == 0) ? "table-active" : "table-light")">
+                    <th scope="row">@transportation.Id</th>
+                    <td>@transportation.City.Name</td> <!-- Assuming you have a navigation property for City -->
+                    <td>@transportation.Content</td>
+
+                    <td>
+                        <a class="btn btn-success" asp-controller="Admin" asp-action="TransportationDetails" asp-route-id="@transportation.Id">View</a>
+                    </td>
+
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Admin" asp-action="EditTransportation" asp-route-id="@transportation.Id">Edit</a>
+                    </td>
+
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-@transportation.Id">Delete</button>
+                    </td>
+                </tr>
+
+                <!-- Delete Modal -->
+                <div class="modal fade" id="myModal-@transportation.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-@transportation.Id" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel-@transportation.Id">Delete Transportation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this transportation article?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <form asp-controller="Admin" asp-action="DeleteItemConfirmed" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@transportation.Id" />
+                                    <input type="hidden" name="type" value="transportation" />
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt me-2"></i>Delete
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </tbody>
+    </table>
+</div>
