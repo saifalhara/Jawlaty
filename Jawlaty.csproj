@@ -55,10 +55,8 @@
     <Folder Include="Auth\" />
     <Folder Include="Auth\Services\" />
     <Folder Include="Auth\DTO\" />
-    <Folder Include="Services\" />
     <Folder Include="Services\Announcement \" />
     <Folder Include="Services\UserFavorite\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Announcements\" />
     <Folder Include="Services\Hotel\" />
     <Folder Include="Services\Restaurant\" />

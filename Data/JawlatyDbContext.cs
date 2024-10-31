@@ -28,8 +28,8 @@ namespace Jawlaty.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<Transportation> Transportations { get; set; }
 
+        public DbSet<Venue> Venue { get; set; }
 
-            
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

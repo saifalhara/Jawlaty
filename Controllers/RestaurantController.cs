@@ -248,15 +248,4 @@ using Microsoft.AspNetCore.Mvc;
         return Json(new { isFavorite = !isFavorite });
     }
 
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -9,10 +9,4 @@ public interface IUserFavoriteService
     public bool IsFavorite(string userId, int placeId, string placeType);
     public List<UserFavorite> GetUserFavorites(string userId);
     public UserFavorite GetFavoriteByUserAndPlace(string userId, int placeId, string placeType);
-
-
-
-
-
-
 }

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Jawlaty.Models.Venue>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VenueType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Succsed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @if (item.Succsed!.HasValue)
+                    {
+                        @if (item.Succsed!.Value is true)
+                        {
+                            <i class="bi bi-check-circle">Yes</i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-alarm-fill">No</i>
+                        }
+                    }
+                    else
+                    {
+                        <i class="bi bi-x-circle">Wating</i>
+
+                    }
+                 
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="DeleteVenueAdmin" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>

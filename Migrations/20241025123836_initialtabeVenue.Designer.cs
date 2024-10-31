@@ -4,6 +4,7 @@ using Jawlaty.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jawlaty.Migrations
 {
     [DbContext(typeof(JawlatyDbContext))]
-    partial class JawlatyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241025123836_initialtabeVenue")]
+    partial class initialtabeVenue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,15 +94,15 @@ namespace Jawlaty.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "19083016-707d-430a-8c51-701a6db8d896",
+                            ConcurrencyStamp = "50923f83-e746-46c9-8cf4-99e23781f9c6",
                             Email = "admin@gamil.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAELCvxqsSRjfcpuiGgBDqbOQ+R/CHtUY/mZRgl2C361Rt6uP+0AajgpZkDaRkb3AOMQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDWyDsQJmxPY6CcprdJ3Jt9yvHVv28/aoOkG7FCnsddQtEYUGxKvAslx9wTHa1k1dQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a96750ef-cf9e-4504-b6be-7dc0bac89e6c",
+                            SecurityStamp = "b59d3968-fb51-4658-a193-2d4b00a6dd24",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -453,13 +456,6 @@ namespace Jawlaty.Migrations
 
                     b.Property<bool?>("Succsed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VenueType")
-                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

@@ -1,0 +1,81 @@
+﻿@model Jawlaty.Models.Venue
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<form asp-controller=" Venue" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group" hidden>
+            <label asp-for="ID" class="control-label"></label>
+            <input readonly asp-for="ID" class="form-control" />
+            <span asp-validation-for="ID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group" hidden>
+            <label asp-for="CityID" class="control-label"></label>
+            <input readonly asp-for="CityID" class="form-control" />
+            <span asp-validation-for="CityID" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="ArName" class="form-label mt-4"></label>
+                <input type="text" readonly class="form-control" asp-for="ArName" placeholder="Arabic Name">
+                <span asp-validation-for="ArName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="EnName" class="form-label mt-4"></label>
+                <input type="text" readonly class="form-control" asp-for="EnName" placeholder="English Name">
+                <span asp-validation-for="EnName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Title" class="form-label mt-4"></label>
+                <input type="text" readonly class="form-control" asp-for="Title" placeholder="Title">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="CityName" class="form-label mt-4"></label>
+                <input type="text" readonly class="form-control" asp-for="CityName" placeholder="City Name">
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VenueType" class="form-label mt-4"></label>
+            <select class="form-select" readonly asp-for="VenueType" asp-items="Html.GetEnumSelectList<VenueType>()"
+                    data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
+                <option value=""></option>
+            </select>
+            <span asp-validation-for="VenueType" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="form-label mt-4"></label>
+            <textarea asp-for="Description" readonly class="form-control" placeholder="Description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mt-4">
+            @if (Model.ImageUrl != null)
+            {
+                <img src="@Model.ImageUrl" alt="Hotel Image" style="max-width: 400px;" />
+            }
+            <p class="mt-3"><strong>Description:</strong> @Model.Description</p>
+        </div>
+        <button type="submit" class="btn btn-primary" asp-action="DetailsAdminApproved">Approved</button>
+        <button type="submit" class="btn btn-danger" asp-action="DetailsAdminNonApproved">No Approved</button>
+    </div>
+</form>
+<div>
+    <a asp-action="IndexAdmin">Back to List</a>
+</div>

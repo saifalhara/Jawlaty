@@ -1,0 +1,77 @@
+﻿@model Jawlaty.Models.Venue
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Venue</h4>
+
+    <div class="mt-4">
+        @if (Model.ImageUrl != null)
+        {
+            <img src="@Model.ImageUrl" alt="Hotel Image" style="max-width: 400px;" />
+        }
+        <p class="mt-3"><strong>Description:</strong> @Model.Description</p>
+    </div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EnName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EnName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VenueType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VenueType)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Succsed)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Succsed!.HasValue)
+            {
+                @if (Model.Succsed!.Value is true)
+                {
+                    <i class="bi bi-check-circle"></i>
+                }
+                else
+                {
+                    <i class="bi bi-x-circle"></i>
+                }
+            }
+            else
+            {
+                <i class="bi bi-alarm-fill"></i>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

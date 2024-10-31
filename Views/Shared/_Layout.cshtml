@@ -108,9 +108,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Venue</a>
                         <div class="dropdown-menu m-0">
-                            <a href="destination.html" class="dropdown-item">Add venue</a>
-                            <a href="booking.html" class="dropdown-item">View Previous Requests</a>
-
+                            <a asp-controller="Venue" asp-action="Create" class="dropdown-item">Create Venue</a>
+                            <a asp-controller="Venue" asp-action="Index" class="dropdown-item">View Previous Requests</a>
                         </div>
                     </div>
                     @*<a href="contact.html" class="nav-item nav-link">Contact</a>*@

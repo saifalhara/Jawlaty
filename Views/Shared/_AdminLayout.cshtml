@@ -47,7 +47,7 @@
                             <a class="nav-link" asp-controller="Admin" asp-action="Restaurants">Restaurants</a>
                             <a class="nav-link" asp-controller="Admin" asp-action="Entertainments">Entertainments</a>
                             <a class="nav-link" asp-controller="Admin" asp-action="Transportations">Transportation</a>
-
+                            <a class="nav-link" asp-controller="Venue" asp-action="IndexAdmin">Venue</a>
 
                             @*<a class="nav-link" asp-controller="Dashboards" asp-action="AddDepartment">Add Department</a>
                         <a class="nav-link" asp-controller="Dashboards" asp-action="AddRoom">Add Room</a>
@@ -110,7 +110,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>
-
+@await RenderSectionAsync("Scripts", required: false)
 
 <style>
     :root {

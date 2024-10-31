@@ -15,7 +15,7 @@ namespace Jawlaty.Models
         public virtual ICollection<Restaurant> Restaurant { get; set; }
         public virtual ICollection<Hotel> Hotel { get; set; }
         public virtual ICollection<Entertainment> Entertainment { get; set; }
-
+        public ICollection<Venue> LstVenue { get; set; }
 
     }
 

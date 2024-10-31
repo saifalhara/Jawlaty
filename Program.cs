@@ -2,6 +2,7 @@
 using Jawlaty.Auth;
 using Jawlaty.Auth.Services;
 using Jawlaty.Data;
+using Jawlaty.Services;
 using Jawlaty.Services.Rating;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,7 @@ builder.Services.AddScoped<IEntertainmentService, EntertainmentService>();
 builder.Services.AddScoped<IRatingService, RatingService>();
 builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<ITransportationService, TransportationService>();
-
+builder.Services.AddScoped<IVenueService, VenueService>();
 
 
 

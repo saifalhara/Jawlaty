@@ -1,0 +1,74 @@
+﻿@model Jawlaty.ViewModel.CreateVenue
+
+@{
+    ViewData["Title"] = "CreateVenue";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create Venue</h1>
+<form asp-controller=" Venue" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="ArName" class="form-label mt-4"></label>
+                <input type="text" class="form-control" asp-for="ArName" placeholder="Arabic Name">
+                <span asp-validation-for="ArName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="EnName" class="form-label mt-4"></label>
+                <input type="text" class="form-control" asp-for="EnName" placeholder="English Name">
+                <span asp-validation-for="EnName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Title" class="form-label mt-4"></label>
+                <input type="text" class="form-control" asp-for="Title" placeholder="Title">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CityID" class="form-label mt-4"></label>
+            <select class="form-select" asp-for="CityID" asp-items="Model.Citys"
+                    data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
+                <option value=""></option>
+            </select>
+            <span asp-validation-for="CityID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VenueType" class="form-label mt-4"></label>
+            <select class="form-select" asp-for="VenueType" asp-items="Html.GetEnumSelectList<VenueType>()"
+                    data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
+                <option value=""></option>
+            </select>
+            <span asp-validation-for="VenueType" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="form-label mt-4"></label>
+            <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="ImageUrl" class="form-label mt-4"></label>
+            <input type="file" class="form-control" id="Image" name="ImageFile" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" asp-action="Create">Create Venue</button>
+    </div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@* @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+
