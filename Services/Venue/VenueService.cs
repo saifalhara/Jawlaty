@@ -55,7 +55,7 @@ namespace Jawlaty.Services
 
         public async Task DeleteVenue(int VenueID)
         {
-            Venue? venueobj = await _context.Venue.SingleOrDefaultAsync(x => x.ID == VenueID);
+            Venue? venueobj = await _context.Venue.AsNoTracking().SingleOrDefaultAsync(x => x.ID == VenueID);
             if (venueobj is not null)
             {
                 _context.Venue.Remove(venueobj);
@@ -65,22 +65,22 @@ namespace Jawlaty.Services
 
         public async Task<IEnumerable<Venue>> GetAllVenue()
         {
-            return await _context.Venue.ToListAsync();
+            return await _context.Venue.AsNoTracking().ToListAsync();
         }
 
         public async Task<Venue> GetByID(int VenueID)
         {
-            Venue? venueobj = await _context.Venue.SingleOrDefaultAsync(x => x.ID == VenueID);
+            Venue? venueobj = await _context.Venue.AsNoTracking().SingleOrDefaultAsync(x => x.ID == VenueID);
             if (venueobj is not null)
             {
                 return venueobj;
             }
-            return new Venue();
+            return null ?? new Venue();
         }
 
         public async Task UpdateVenue(Venue venueobj)
         {
-            Venue? venueUpdateObj = await _context.Venue.SingleOrDefaultAsync(x => x.ID == venueobj.ID);
+            Venue? venueUpdateObj = await _context.Venue.AsNoTracking().SingleOrDefaultAsync(x => x.ID == venueobj.ID);
             if (venueUpdateObj is not null)
             {
                 _context.Venue.Update(venueobj);

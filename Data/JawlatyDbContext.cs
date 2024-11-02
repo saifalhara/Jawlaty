@@ -26,8 +26,8 @@ namespace Jawlaty.Data
         public DbSet<Entertainment> Entertainments { get; set; }
         public DbSet<UserRating> UserRatings { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<Question> Question { get; set; }
         public DbSet<Transportation> Transportations { get; set; }
-
         public DbSet<Venue> Venue { get; set; }
 
 

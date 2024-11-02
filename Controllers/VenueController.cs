@@ -94,7 +94,7 @@ namespace Jawlaty.Controllers
         public async Task<IActionResult> Details(int ID)
         {
             var Venue = await _service.GetByID(ID);
-            if (Venue is null)
+            if (Venue.ID is 0)
             {
                 return NotFound();
             }
@@ -107,7 +107,7 @@ namespace Jawlaty.Controllers
             Venue venue = await _service.GetByID(id);
             var cityname = _cityService.GetCityById(venue.CityID);
             venue.CityName = cityname.Name;
-            if (venue is null)
+            if (venue.ID is 0)
             {
                 return NotFound();
             }
@@ -155,7 +155,7 @@ namespace Jawlaty.Controllers
         public async Task<IActionResult> DetailsAdmin(int ID)
         {
             var Venue = await _service.GetByID(ID);
-            if (Venue is null)
+            if (Venue.ID is 0)
             {
                 return NotFound();
             }
@@ -206,7 +206,7 @@ namespace Jawlaty.Controllers
             Venue venue = await _service.GetByID(id);
             var cityname = _cityService.GetCityById(venue.CityID);
             venue.CityName = cityname.Name;
-            if (venue is null)
+            if (venue.ID is 0)
             {
                 return NotFound();
             }
