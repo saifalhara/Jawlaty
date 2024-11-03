@@ -35,6 +35,7 @@ builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<ITransportationService, TransportationService>();
 builder.Services.AddScoped<IVenueService, VenueService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddScoped<ITripsService, TripsService>();
 
 
 //builder.Services.AddControllersWithViews();

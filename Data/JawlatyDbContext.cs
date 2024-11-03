@@ -2,6 +2,7 @@
 using System.Numerics;
 using Jawlaty.Auth;
 using Jawlaty.Models;
+using Jawlaty.Models.Trips;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,7 @@ namespace Jawlaty.Data
         public DbSet<Question> Question { get; set; }
         public DbSet<Transportation> Transportations { get; set; }
         public DbSet<Venue> Venue { get; set; }
+        public DbSet<Trips> Trips { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

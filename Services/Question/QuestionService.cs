@@ -22,7 +22,7 @@ namespace Jawlaty.Services
 
         public async Task DeleteQuestion(int QuestionID)
         {
-            Question? Questionobj = await _dbcontext.Question.SingleOrDefaultAsync(x => x.ID == QuestionID);
+            Question? Questionobj = await _dbcontext.Question.AsNoTracking().SingleOrDefaultAsync(x => x.ID == QuestionID);
             if (Questionobj is not null)
             {
                 _dbcontext.Question.Remove(Questionobj);
@@ -32,7 +32,7 @@ namespace Jawlaty.Services
 
         public async Task<Question> GetByID(int QuestionID)
         {
-            Question? Questionobj = await _dbcontext.Question.SingleOrDefaultAsync(x => x.ID == QuestionID);
+            Question? Questionobj = await _dbcontext.Question.AsNoTracking().SingleOrDefaultAsync(x => x.ID == QuestionID);
             if (Questionobj is not null)
             {
                 return Questionobj;

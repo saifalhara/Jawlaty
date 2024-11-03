@@ -1,0 +1,80 @@
+﻿@using Jawlaty.Models.Trips
+@model Jawlaty.Models.Trips.Trips
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Trips</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QuestionOne" class="control-label"></label>
+                <input readonly asp-for="QuestionOne" class="form-control" />
+                <span asp-validation-for="QuestionOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfDay" class="control-label"></label>
+                <input  asp-for="NumberOfDay" min="1" max="7" class="form-control" />
+                <span asp-validation-for="NumberOfDay" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="QuestionTwo" class="control-label"></label>
+                <input readonly asp-for="QuestionTwo" class="form-control" />
+                <span asp-validation-for="QuestionTwo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Withtraveling" class="form-label mt-4"></label>
+                <select class="form-select" asp-for="Withtraveling" asp-items="Html.GetEnumSelectList<Withtraveling>()"
+                        data-placeholder="Select a With Traveling" data-minimum-results-for-search="Infinity">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="Withtraveling" class="text-danger"></span>
+            </div>
+
+            @if (Model.Withtraveling == Withtraveling.Family)
+            {
+                <div class="form-group">
+                    <label asp-for="QuestionThree" class="control-label"></label>
+                    <input readonly asp-for="QuestionThree" class="form-control" />
+                    <span asp-validation-for="QuestionThree" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="HasChlidren" class="control-label"></label>
+                <input type="checkbox" name="FormCopy" id="FormCopy" value="False" checked="@Model.HasChlidren">
+            </div>
+            }
+
+            <div class="form-group">
+                <label asp-for="QuestionFour" class="control-label"></label>
+                <input readonly asp-for="QuestionFour" class="form-control" />
+                <span asp-validation-for="QuestionFour" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Interest" class="form-label mt-4"></label>
+                <select class="form-select" asp-for="Interest" asp-items="Html.GetEnumSelectList<Interest>()"
+                        data-placeholder="Select a With Interest" data-minimum-results-for-search="Infinity">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="Interest" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

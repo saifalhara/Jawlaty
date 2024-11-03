@@ -47,7 +47,7 @@ public class QuestionController : Controller
     public async Task<IActionResult> Edit(int id)
     {
         var question = await _service.GetByID(id);
-        if(question is null)
+        if(question.ID is 0)
         {
             return NotFound();
         }
