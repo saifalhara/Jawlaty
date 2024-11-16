@@ -51,12 +51,8 @@ public class EntertainmentService : IEntertainmentService
             }
         }
 
-
-
-
-
-
-
-
-
+    public async Task<List<Entertainment>> Search(string trem)
+    {
+        return await _context.Entertainments.AsNoTracking().Where(x => x.Title.Contains(trem)).ToListAsync();
+    }
 }

@@ -47,7 +47,15 @@ builder.Services.AddMvc();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.User.RequireUniqueEmail = true;
-}).AddEntityFrameworkStores<JawlatyDbContext>();
+    options.Tokens.PasswordResetTokenProvider = "Default";  // Ensure it's set
+    options.SignIn.RequireConfirmedAccount = false;  // Adjust depending on requirements
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 8;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+}).AddEntityFrameworkStores<JawlatyDbContext>()
+.AddDefaultTokenProviders() ;
 
 
 // failed trials - accessing path

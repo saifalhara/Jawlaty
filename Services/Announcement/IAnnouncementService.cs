@@ -9,4 +9,5 @@ public interface IAnnouncementService
     Task CreateAnnouncement(Announcement announcement);
     Task UpdateAnnouncement(Announcement announcement);
     Task DeleteAnnouncement(int id);
+    Task<List<Announcement>> Search(string Trem);
 }

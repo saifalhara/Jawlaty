@@ -55,4 +55,9 @@ public class TransportationService : ITransportationService
                           .Include(t => t.City) 
                           .FirstOrDefault(t => t.Id == id);
     }
+
+    public async Task<List<Transportation>> Search(string trem)
+    {
+       return await _context.Transportations.AsNoTracking().Where(x=>x.Title.Contains(trem)).ToListAsync();
+    }
 }

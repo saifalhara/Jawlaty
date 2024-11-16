@@ -9,6 +9,7 @@ public interface IRestaurantService
         void UpdateRestaurant(Restaurant restaurant);
         void DeleteRestaurant(int id);
         void ToggleFavorite(int restId, bool isFavorite);
+        Task<List<Restaurant>> Search(string trem);
 
 
 }

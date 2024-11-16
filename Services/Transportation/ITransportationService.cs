@@ -10,4 +10,6 @@ public interface ITransportationService
     void DeleteTransportation(int id);
     public IEnumerable<Transportation> GetTransportationByCityId(int cityId);
 
+    Task<List<Transportation>> Search(string trem);
+
 }

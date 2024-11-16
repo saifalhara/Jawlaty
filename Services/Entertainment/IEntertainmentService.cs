@@ -7,5 +7,5 @@ public interface IEntertainmentService
     void AddEntertainment(Entertainment entertainment);
     void UpdateEntertainment(Entertainment entertainment);
     void DeleteEntertainment(int id);
-
+    Task<List<Entertainment>> Search(string trem);
 }

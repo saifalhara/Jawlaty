@@ -126,5 +126,48 @@ namespace Jawlaty.Auth.Services
             return null; // If not authenticated or doctor not found
         }
 
+        public async Task<bool> ResetPasswordAsync(ResetPasswordDTO resetPasswordDTO)
+        {
+            ApplicationUser? user =await _userManager.FindByEmailAsync(resetPasswordDTO.Email);
+
+            if(user is null)
+            {
+                throw new InvalidOperationException("User not found.");
+            }
+            string Token = await GeneratePasswordResetTokenAsync(resetPasswordDTO.Email);
+            resetPasswordDTO.Token = Token;
+            IdentityResult result = await _userManager.ResetPasswordAsync(user, resetPasswordDTO.Token, resetPasswordDTO.NewPassword);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    // قم بتسجيل الخطأ أو رمي استثناء مفصل
+                    Console.WriteLine($"Error: {error.Description}");
+                }
+                return false;
+            }
+            return result.Succeeded;
+        }
+        public async Task<string> GeneratePasswordResetTokenAsync(string email)
+        {
+            try
+            {
+                ApplicationUser? user = await _userManager.FindByEmailAsync(email);
+                if (user == null)
+                {
+                    throw new InvalidOperationException("User not found.");
+                }
+
+                // Generate password reset token for the user
+                string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                return token;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+     
+        }
     }
 }

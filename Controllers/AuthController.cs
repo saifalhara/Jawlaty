@@ -117,7 +117,12 @@ namespace Jawlaty.Controllers
             return View();
         }
 
-
+        [HttpPost]
+        public async Task<ActionResult> RestPassword(ResetPasswordDTO resetPasswordDTO)
+        {
+            await userService.ResetPasswordAsync(resetPasswordDTO);
+            return Ok(resetPasswordDTO);
+        }
 
         [Authorize]
         public IActionResult ViewFavourits()

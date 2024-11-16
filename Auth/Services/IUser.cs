@@ -18,6 +18,6 @@ namespace Jawlaty.Auth.Services
         public Task LogOut();
         public Task<List<ApplicationUser>> getAll();
         public Task<string> GetCurrentLoggedInDoctorId();
-
+        Task<bool> ResetPasswordAsync(ResetPasswordDTO resetPasswordDTO);
     }
 }

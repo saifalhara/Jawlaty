@@ -49,4 +49,9 @@ public class AnnouncementService : IAnnouncementService
             await _context.SaveChangesAsync();
         }
     }
+
+    public async Task<List<Announcement>> Search(string Trem)
+    {
+        return await _context.Announcements.AsNoTracking().Where(x=>x.Title.Contains(Trem)).ToListAsync();
+    }
 }

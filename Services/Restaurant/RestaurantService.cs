@@ -75,6 +75,8 @@ public class RestaurantService : IRestaurantService
         }
     }
 
-
-
+    public async Task<List<Restaurant>> Search(string trem)
+    {
+        return await _context.Restaurants.AsNoTracking().Where(x => x.Title.Contains(trem)).ToListAsync();
+    }
 }

@@ -81,11 +81,8 @@ public class HotelService : IHotelService
         }
     }
 
-
-
-
-
-
-
-
+    public async Task<List<Hotel>> Search(string trem)
+    {
+        return await _context.Hotels.AsNoTracking().Where(x => x.Title.Contains(trem)).ToListAsync();
+    }
 }
