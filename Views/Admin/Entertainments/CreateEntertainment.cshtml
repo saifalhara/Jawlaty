@@ -17,6 +17,48 @@
             <label for="LongDescription">Description</label>
             <textarea class="form-control" id="Description" name="Description" rows="5" required></textarea>
         </div>
+
+        <div>
+            <label asp-for="HasLiveMusic"></label>
+            <input asp-for="HasLiveMusic" type="checkbox" />
+        </div>
+
+        <div>
+            <label asp-for="HasTheater"></label>
+            <input asp-for="HasTheater" type="checkbox" />
+        </div>
+
+        <div>
+            <label asp-for="HasSport"></label>
+            <input asp-for="HasSport" type="checkbox" />
+        </div>
+
+
+        <div>
+            <label asp-for="HasCinema"></label>
+            <input asp-for="HasCinema" type="checkbox" />
+        </div>
+
+        <div>
+            <label asp-for="HasShopping"></label>
+            <input asp-for="HasShopping" type="checkbox" />
+        </div>
+
+        <div>
+            <label asp-for="Spa"></label>
+            <input asp-for="Spa" type="checkbox" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CheakAge" class="form-label mt-4"></label>
+            <select class="form-select" asp-for="CheakAge" asp-items="Html.GetEnumSelectList<CheakAge>()"
+                    data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
+                <option value=""></option>
+            </select>
+            <span asp-validation-for="CheakAge" class="text-danger"></span>
+        </div>
+
+
         <div class="form-group mt-3">
             <label for="Image">Image</label>
             <input type="file" class="form-control" id="Image" name="ImageFile" />

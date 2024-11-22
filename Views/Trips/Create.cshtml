@@ -1,5 +1,5 @@
 ﻿@using Jawlaty.Models.Trips
-@model Jawlaty.Models.Trips.Trips
+@model Jawlaty.ViewModel.TripsViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,69 +13,85 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="QuestionOne" class="control-label"></label>
-                <input readonly asp-for="QuestionOne" class="form-control" />
-
-                <span asp-validation-for="QuestionOne" class="text-danger"></span>
-            </div>
+            <p>@Model.QuestionOne</p>
             <div class="form-group">
                 <label asp-for="NumberOfDay" class="control-label"></label>
-                <input  asp-for="NumberOfDay" min="1" max="7" class="form-control" />
+                <input asp-for="NumberOfDay" class="form-control" />
                 <span asp-validation-for="NumberOfDay" class="text-danger"></span>
             </div>
-
-            <div class="form-group">
-                <label asp-for="QuestionTwo" class="control-label"></label>
-                <input readonly asp-for="QuestionTwo" class="form-control" />
-                <span asp-validation-for="QuestionTwo" class="text-danger"></span>
-            </div>
-
+            <p>@Model.QuestionTwo</p>
             <div class="form-group">
                 <label asp-for="Withtraveling" class="form-label mt-4"></label>
-                <select class="form-select" asp-for="Withtraveling" asp-items="Html.GetEnumSelectList<Withtraveling>()"
-                        data-placeholder="Select a With Traveling" data-minimum-results-for-search="Infinity">
+                <select id="withTravelingSelect" class="form-select" asp-for="Withtraveling" asp-items="Html.GetEnumSelectList<Withtraveling>()"
+                        data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
                     <option value=""></option>
                 </select>
                 <span asp-validation-for="Withtraveling" class="text-danger"></span>
             </div>
-
-            @if (Model.Withtraveling == Withtraveling.Family)
-            {
-                <div class="form-group">
-                    <label asp-for="QuestionThree" class="control-label"></label>
-                    <input readonly asp-for="QuestionThree" class="form-control" />
-                    <span asp-validation-for="QuestionThree" class="text-danger"></span>
+            <p>@Model.QuestionThree</p>
+            <div id="hasChildrenContainer" class="form-group d-none">
+                <div class="form-check">
+                    <input id="hasChildrenCheckbox" name="HasChlidren" class="form-check-input" type="checkbox"
+                           value="true" @(Model.HasChlidren == true ? "checked" : "") />
+                    <label class="form-check-label" for="hasChildrenCheckbox">Has Children</label>
                 </div>
-
-                <div class="form-group">
-                    <label asp-for="HasChlidren" class="control-label"></label>
-                <input type="checkbox" name="FormCopy" id="FormCopy" value="False" checked="@Model.HasChlidren">
             </div>
-            }
 
-            <div class="form-group">
-                <label asp-for="QuestionFour" class="control-label"></label>
-                <input readonly asp-for="QuestionFour" class="form-control" />
-                <span asp-validation-for="QuestionFour" class="text-danger"></span>
+            <p>@Model.QuestionFour</p>
+            <div id="numberOfChildrenField" class="form-group d-none">
+                <label for="numberOfChildren" class="control-label">Number of Children</label>
+                <input id="numberOfChildren" name="NumberOfChildren" type="number" class="form-control" min="0" />
+                <span class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Interest" class="form-label mt-4"></label>
                 <select class="form-select" asp-for="Interest" asp-items="Html.GetEnumSelectList<Interest>()"
-                        data-placeholder="Select a With Interest" data-minimum-results-for-search="Infinity">
+                        data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
                     <option value=""></option>
                 </select>
                 <span asp-validation-for="Interest" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+
+            <div class="d-flex  mt-2 gap-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             </div>
+
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropdown = document.getElementById('withTravelingSelect');
+        const hasChildrenContainer = document.getElementById('hasChildrenContainer');
+        const hasChildrenCheckbox = document.getElementById('hasChildrenCheckbox');
+        const numberOfChildrenField = document.getElementById('numberOfChildrenField');
+
+        dropdown.addEventListener('change', function () {
+            const selectedValue = dropdown.value;
+
+            if (selectedValue === "3" || selectedValue === "4") {
+                hasChildrenContainer.classList.remove('d-none');
+            } else {
+                hasChildrenContainer.classList.add('d-none');
+                hasChildrenCheckbox.checked = false;
+                numberOfChildrenField.classList.add('d-none');
+            }
+        });
+
+        hasChildrenCheckbox.addEventListener('change', function () {
+            if (hasChildrenCheckbox.checked) {
+                numberOfChildrenField.classList.remove('d-none');
+            } else {
+                numberOfChildrenField.classList.add('d-none');
+            }
+        });
+    });
+
+
+</script>

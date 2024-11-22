@@ -15,7 +15,7 @@ namespace Jawlaty.Controllers
 
 
         public AuthController(IUser userSer, IUserFavoriteService userFavoriteService)
-        { 
+        {
             userService = userSer;
             _userFavoriteService = userFavoriteService;
 
@@ -26,7 +26,7 @@ namespace Jawlaty.Controllers
         {
             return View();
         }
-  
+
 
 
         public IActionResult SignUp()
@@ -84,7 +84,7 @@ namespace Jawlaty.Controllers
             }
             else
             {  // Redirect to the home page for non-admin users
-                  return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
 
             }
 
@@ -114,14 +114,24 @@ namespace Jawlaty.Controllers
 
         public IActionResult RestPassword()
         {
-            return View();
+            ResetPasswordDTO resetPasswordDTO = new();
+            return View(resetPasswordDTO);
         }
 
         [HttpPost]
         public async Task<ActionResult> RestPassword(ResetPasswordDTO resetPasswordDTO)
         {
-            await userService.ResetPasswordAsync(resetPasswordDTO);
-            return Ok(resetPasswordDTO);
+            try
+            {
+                await userService.ResetPasswordAsync(resetPasswordDTO);
+                return Ok(resetPasswordDTO);
+            }
+            catch (Exception ex)
+            {
+                BadRequest(ex.Message);
+                throw;
+            }
+            
         }
 
         [Authorize]
@@ -169,12 +179,5 @@ namespace Jawlaty.Controllers
         //        return View(model);
         //    }
         //}
-
-
-
-
-
-
-
     }
 }

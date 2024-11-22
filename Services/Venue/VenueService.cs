@@ -31,17 +31,17 @@ namespace Jawlaty.Services
             switch (venue.VenueType)
             {
                 case VenueType.Hotel:
-                    Hotel hotel = new() { ImageUrl = venue.ImageUrl, CityId = venue.CityID, Title = venue.Title, Description = venue.Description };
+                    Hotel hotel = new() { ImageUrl = venue.ImageUrl, CityId = venue.CityID, Title = venue.Title, Description = venue.Description,HASWIFI=venue.HASWIFI,HASPOOL=venue.HASPOOL,HasGym=venue.HasGym,HasSpa=venue.HasSpa,HasRestaurant=venue.HasRestaurant,Art=venue.Art };
                     _hotelService.AddHotel(hotel);
                     break;
 
                 case VenueType.Entertainment:
-                    Entertainment Entertainment = new() { ImageUrl = venue.ImageUrl, CityId = venue.CityID, Title = venue.Title, Description = venue.Description };
+                    Entertainment Entertainment = new() { ImageUrl = venue.ImageUrl, CityId = venue.CityID, Title = venue.Title, Description = venue.Description,HasCinema=venue.HasCinema,HasTheater=venue.HasTheater,HasShopping=venue.HasShopping,HasLiveMusic=venue.HasLiveMusic,HasSport=venue.HasSport,CheakAge=venue.CheakAge, };
                     _entertainmentService.AddEntertainment(Entertainment);
                     break;
 
                 case VenueType.ResTaurant:
-                    Restaurant restaurant = new() { ImageUrl = venue.ImageUrl, CityId = venue.CityID, Title = venue.Title, Description = venue.Description };
+                    Restaurant restaurant = new() { ImageUrl = venue.ImageUrl, CityId = venue.CityID, Title = venue.Title, Description = venue.Description,Indian=venue.Indian,Italian=venue.Italian,Mexican=venue.Mexican,Glutenfree=venue.Glutenfree,MiAmeicanddle=venue.MiAmeicanddle,TimeInput=venue.TimeInput,Timeout=venue.Timeout,Middle=venue.Middle,Chinese=venue.Chinese,Vegetarian=venue.Vegetarian,Vagen=venue.Vagen, };
                     _restaurantService.AddRestaurant(restaurant);
                     break;
 

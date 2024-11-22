@@ -4,6 +4,7 @@ using Jawlaty.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jawlaty.Migrations
 {
     [DbContext(typeof(JawlatyDbContext))]
-    partial class JawlatyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241116192449_edittable")]
+    partial class edittable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,15 +94,15 @@ namespace Jawlaty.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "01d5eb85-16de-4f3c-9f16-01c5f774cca3",
+                            ConcurrencyStamp = "0fd07073-93c7-42ce-bfda-517946875cff",
                             Email = "admin@gamil.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAELxqLG+fSHfeXMdPlY7vfGeYcfklNpY4pM5W4n9bJN2B8ykhIoM7FzlQiHSCibAKPA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEF3/9pJspULvDbueG7Qsexz6L0rPuINStYLXfepkgsrd+QvqsNofdh6+qhMqixmO8w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "56741130-6a75-41e2-8e59-592f4e35749d",
+                            SecurityStamp = "294fb466-360e-4c40-85c1-83d8b260a778",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -278,9 +281,6 @@ namespace Jawlaty.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Art")
-                        .HasColumnType("bit");
-
                     b.Property<double>("AverageRating")
                         .HasColumnType("float");
 
@@ -290,9 +290,6 @@ namespace Jawlaty.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Food")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("HASPOOL")
                         .HasColumnType("bit");
@@ -309,20 +306,11 @@ namespace Jawlaty.Migrations
                     b.Property<bool>("HasSpa")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("History")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Parking")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Shopping")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Sports")
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
@@ -563,15 +551,6 @@ namespace Jawlaty.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("Art")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("CheakAge")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Chinese")
-                        .HasColumnType("bit");
-
                     b.Property<int>("CityID")
                         .HasColumnType("int");
 
@@ -585,94 +564,16 @@ namespace Jawlaty.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("Food")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Glutenfree")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HASPOOL")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HASWIFI")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasCinema")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasGym")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasLiveMusic")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasRestaurant")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasShopping")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasSpa")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasSport")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HasTheater")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("History")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Indian")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Italian")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Mexican")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("MiAmeicanddle")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Middle")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Parking")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Shopping")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Spa")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Sports")
-                        .HasColumnType("bit");
-
                     b.Property<bool?>("Succsed")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime>("TimeInput")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Timeout")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Vagen")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Vegetarian")
-                        .HasColumnType("bit");
 
                     b.Property<int>("VenueType")
                         .HasColumnType("int");
