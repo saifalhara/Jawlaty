@@ -43,11 +43,45 @@
 
         <div class="form-group">
             <label asp-for="VenueType" class="form-label mt-4"></label>
-            <select class="form-select" asp-for="VenueType" asp-items="Html.GetEnumSelectList<VenueType>()"
-                    data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
-                <option value=""></option>
+            <select id="venueType" class="form-select" asp-for="VenueType" asp-items="Html.GetEnumSelectList<VenueType>()"
+                    data-placeholder="Select a category">
+              
             </select>
             <span asp-validation-for="VenueType" class="text-danger"></span>
+        </div>
+
+        <div id="hotelOptions" style="display:none;">
+            <div class="mt-4">
+                <input type="checkbox" asp-for="HASWIFI" /> Has Wifi
+                <input type="checkbox" asp-for="HASPOOL" /> Has Pool
+                <input type="checkbox" asp-for="HasGym" /> Has Gym
+                <input type="checkbox" asp-for="HasSpa" /> Has Spa
+                <input type="checkbox" asp-for="HasRestaurant" /> Has Restaurant
+                <input type="checkbox" asp-for="Parking" /> Has Parking
+            </div>
+        </div>
+
+        <div id="restaurantOptions" style="display:none;">
+            <div class="mt-4">
+                <input type="checkbox" asp-for="Italian" /> Italian
+                <input type="checkbox" asp-for="Chinese" /> Chinese
+                <input type="checkbox" asp-for="Indian" /> Indian
+                <input type="checkbox" asp-for="Middle" /> Middle Eastern
+                <input type="checkbox" asp-for="Mexican" /> Mexican
+                <input type="checkbox" asp-for="Vegetarian" /> Vegetarian
+                <input type="checkbox" asp-for="Vagen" /> Vegan
+                <input type="checkbox" asp-for="Glutenfree" /> Gluten Free
+            </div>
+        </div>
+
+        <div id="entertainmentOptions" style="display:none;">
+            <div class="mt-4">
+                <input type="checkbox" asp-for="HasLiveMusic" /> Live Music
+                <input type="checkbox" asp-for="HasTheater" /> Theater
+                <input type="checkbox" asp-for="HasSport" /> Sports
+                <input type="checkbox" asp-for="HasCinema" /> Cinema
+                <input type="checkbox" asp-for="HasShopping" /> Shopping
+            </div>
         </div>
 
         <div class="form-group">
@@ -71,4 +105,26 @@
 @* @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 } *@
+
+
+<script>
+    document.getElementById('venueType').addEventListener('change', function () {
+        const hotelOptions = document.getElementById('hotelOptions');
+        const restaurantOptions = document.getElementById('restaurantOptions');
+        const entertainmentOptions = document.getElementById('entertainmentOptions');
+
+        hotelOptions.style.display = 'none';
+        restaurantOptions.style.display = 'none';
+        entertainmentOptions.style.display = 'none';
+
+        const selectedValue = this.value;
+        if (selectedValue === '1') { 
+            hotelOptions.style.display = 'block';
+        } else if (selectedValue === '2') { 
+            restaurantOptions.style.display = 'block';
+        } else if (selectedValue === '3') { 
+            entertainmentOptions.style.display = 'block';
+        }
+    });
+</script>
 
