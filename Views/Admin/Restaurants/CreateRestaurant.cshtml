@@ -1,79 +1,86 @@
-﻿@model Jawlaty.Models.Restaurant 
+﻿@model Jawlaty.Models.Restaurant
 
 @{
     ViewData["Title"] = "Create Restaurant";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="container my-4">
-    <h2>Create New Announcement</h2>
+<div class="container my-4 p-4 shadow-sm rounded ">
+    <h2 class="mb-4 text-center">Create New Restaurant</h2>
     <form asp-action="CreateRestaurant" enctype="multipart/form-data" method="post">
-        <div class="form-group">
-            <label for="Title">Title</label>
-            <input type="text" class="form-control" id="Title" name="Title" required />
+        <div class="form-group mb-3">
+            <label for="Title" class="form-label">Restaurant Title</label>
+            <input type="text" class="form-control" id="Title" name="Title" placeholder="Enter the restaurant title" required />
         </div>
 
-        <div>
-            <label asp-for="TimeInput"></label>
-            <input asp-for="TimeInput" type="datetime-local" />
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="TimeInput" class="form-label">Opening Time</label>
+                <input asp-for="TimeInput" class="form-control" type="datetime-local" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Timeout" class="form-label">Closing Time</label>
+                <input asp-for="Timeout" class="form-control" type="datetime-local" />
+            </div>
         </div>
 
-        <div>
-            <label asp-for="Timeout"></label>
-            <input asp-for="Timeout" type="datetime-local" />
+        <div class="form-group mb-3">
+            <label for="LongDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="Description" name="Description" rows="5" placeholder="Enter the restaurant description" required></textarea>
         </div>
 
-        <div class="form-group mt-3">
-            <label for="LongDescription">Description</label>
-            <textarea class="form-control" id="Description" name="Description" rows="5" required></textarea>
+        <div class="form-group mb-3">
+            <h5 class="mb-3">Cuisine Types</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="Italian" class="form-check-input" type="checkbox" />
+                        <label asp-for="Italian" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Chinese" class="form-check-input" type="checkbox" />
+                        <label asp-for="Chinese" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Indian" class="form-check-input" type="checkbox" />
+                        <label asp-for="Indian" class="form-check-label"></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="Middle" class="form-check-input" type="checkbox" />
+                        <label asp-for="Middle" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="MiAmeicanddle" class="form-check-input" type="checkbox" />
+                        <label asp-for="MiAmeicanddle" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Mexican" class="form-check-input" type="checkbox" />
+                        <label asp-for="Mexican" class="form-check-label"></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="Vegetarian" class="form-check-input" type="checkbox" />
+                        <label asp-for="Vegetarian" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Glutenfree" class="form-check-input" type="checkbox" />
+                        <label asp-for="Glutenfree" class="form-check-label"></label>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <label asp-for="Italian"></label>
-            <input asp-for="Italian" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Chinese"></label>
-            <input asp-for="Chinese" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Indian"></label>
-            <input asp-for="Indian" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Middle"></label>
-            <input asp-for="Middle" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="MiAmeicanddle"></label>
-            <input asp-for="MiAmeicanddle" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Mexican"></label>
-            <input asp-for="Mexican" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Vegetarian"></label>
-            <input asp-for="Vegetarian" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Glutenfree"></label>
-            <input asp-for="Glutenfree" type="checkbox" />
-        </div>
-        <div class="form-group mt-3">
-            <label for="Image">Image</label>
+        <div class="form-group mb-3">
+            <label for="Image" class="form-label">Upload Image</label>
             <input type="file" class="form-control" id="Image" name="ImageFile" />
         </div>
-        <div class="form-group mt-3">
-            <button type="submit" class="btn btn-primary">Create Hotel</button>
-            <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+        <div class="form-group d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary px-4">Create Restaurant</button>
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary px-4">Cancel</a>
         </div>
     </form>
 </div>

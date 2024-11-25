@@ -91,15 +91,15 @@ namespace Jawlaty.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "01d5eb85-16de-4f3c-9f16-01c5f774cca3",
+                            ConcurrencyStamp = "94569453-67af-4fa5-9445-47ab75fe984e",
                             Email = "admin@gamil.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAELxqLG+fSHfeXMdPlY7vfGeYcfklNpY4pM5W4n9bJN2B8ykhIoM7FzlQiHSCibAKPA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIrcOLx0dCwDpt5DVJffzIrqZtSikb/MUKNUrc8bdsdVpg8oLD8Men71zhbO6kuvkA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "56741130-6a75-41e2-8e59-592f4e35749d",
+                            SecurityStamp = "593c8f36-2b91-4161-9c31-e8a72e2a5d14",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });

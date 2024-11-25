@@ -5,67 +5,71 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="container my-4">
-    <h2>Create New Entertainment</h2>
+<div class="container my-4 p-4 shadow-sm rounded ">
+    <h2 class="mb-4 text-center">Create New Entertainment</h2>
     <form asp-action="CreateEntertainment" enctype="multipart/form-data" method="post">
-        <div class="form-group">
-            <label for="Title">Title</label>
-            <input type="text" class="form-control" id="Title" name="Title" required />
+        <div class="form-group mb-3">
+            <label for="Title" class="form-label">Entertainment Title</label>
+            <input type="text" class="form-control" id="Title" name="Title" placeholder="Enter the entertainment title" required />
         </div>
 
-        <div class="form-group mt-3">
-            <label for="LongDescription">Description</label>
-            <textarea class="form-control" id="Description" name="Description" rows="5" required></textarea>
+        <div class="form-group mb-3">
+            <label for="Description" class="form-label">Description</label>
+            <textarea class="form-control" id="Description" name="Description" rows="5" placeholder="Provide a brief description" required></textarea>
         </div>
 
-        <div>
-            <label asp-for="HasLiveMusic"></label>
-            <input asp-for="HasLiveMusic" type="checkbox" />
+        <div class="form-group mb-3">
+            <h5 class="mb-3">Features</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="HasLiveMusic" class="form-check-input" type="checkbox" />
+                        <label asp-for="HasLiveMusic" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="HasTheater" class="form-check-input" type="checkbox" />
+                        <label asp-for="HasTheater" class="form-check-label"></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="HasSport" class="form-check-input" type="checkbox" />
+                        <label asp-for="HasSport" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="HasCinema" class="form-check-input" type="checkbox" />
+                        <label asp-for="HasCinema" class="form-check-label"></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="HasShopping" class="form-check-input" type="checkbox" />
+                        <label asp-for="HasShopping" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Spa" class="form-check-input" type="checkbox" />
+                        <label asp-for="Spa" class="form-check-label"></label>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <label asp-for="HasTheater"></label>
-            <input asp-for="HasTheater" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="HasSport"></label>
-            <input asp-for="HasSport" type="checkbox" />
-        </div>
-
-
-        <div>
-            <label asp-for="HasCinema"></label>
-            <input asp-for="HasCinema" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="HasShopping"></label>
-            <input asp-for="HasShopping" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Spa"></label>
-            <input asp-for="Spa" type="checkbox" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="CheakAge" class="form-label mt-4"></label>
-            <select class="form-select" asp-for="CheakAge" asp-items="Html.GetEnumSelectList<CheakAge>()"
-                    data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
-                <option value=""></option>
+        <div class="form-group mb-3">
+            <label asp-for="CheakAge" class="form-label">Age Restriction</label>
+            <select class="form-select" asp-for="CheakAge" asp-items="Html.GetEnumSelectList<CheakAge>()">
+                <option value="">Select age restriction</option>
             </select>
             <span asp-validation-for="CheakAge" class="text-danger"></span>
         </div>
 
-
-        <div class="form-group mt-3">
-            <label for="Image">Image</label>
+        <div class="form-group mb-3">
+            <label for="Image" class="form-label">Upload Image</label>
             <input type="file" class="form-control" id="Image" name="ImageFile" />
         </div>
-        <div class="form-group mt-3">
-            <button type="submit" class="btn btn-primary">Create Entertainment</button>
-            <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+        <div class="form-group d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary px-4">Create Entertainment</button>
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary px-4">Cancel</a>
         </div>
     </form>
 </div>

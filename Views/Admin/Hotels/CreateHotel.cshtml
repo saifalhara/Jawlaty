@@ -1,84 +1,98 @@
-﻿@model Jawlaty.Models.Hotel 
+﻿@model Jawlaty.Models.Hotel
 
 @{
     ViewData["Title"] = "Create Hotel";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="container my-4">
-    <h2>Create New Hotel</h2>
+<div class="container my-4 p-4 shadow-sm rounded ">
+    <h2 class="mb-4 text-center">Create New Hotel</h2>
     <form asp-action="CreateHotel" enctype="multipart/form-data" method="post">
-        <div class="form-group">
-            <label for="Title">Title</label>
-            <input type="text" class="form-control" id="Title" name="Title" required />
-        </div>
-  
-        <div class="form-group mt-3">
-            <label for="LongDescription">Description</label>
-            <textarea class="form-control" id="Description" name="Description" rows="5" required></textarea>
+        <div class="form-group mb-3">
+            <label for="Title" class="form-label">Hotel Title</label>
+            <input type="text" class="form-control" id="Title" name="Title" placeholder="Enter the hotel title" required />
         </div>
 
-        <div>
-            <label asp-for="HASWIFI"></label>
-            <input asp-for="HASWIFI" type="checkbox" />
+        <div class="form-group mb-3">
+            <label for="LongDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="Description" name="Description" rows="5" placeholder="Enter the hotel description" required></textarea>
         </div>
 
-        <div>
-            <label asp-for="HASPOOL"></label>
-            <input asp-for="HASPOOL" type="checkbox" />
+        <div class="form-group mb-3">
+            <h5 class="mb-3">Hotel Amenities</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="HASWIFI" class="form-check-input" type="checkbox" />
+                        <label asp-for="HASWIFI" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="HASPOOL" class="form-check-input" type="checkbox" />
+                        <label asp-for="HASPOOL" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="HasGym" class="form-check-input" type="checkbox" />
+                        <label asp-for="HasGym" class="form-check-label"></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="HasSpa" class="form-check-input" type="checkbox" />
+                        <label asp-for="HasSpa" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="HasRestaurant" class="form-check-input" type="checkbox" />
+                        <label asp-for="HasRestaurant" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Parking" class="form-check-input" type="checkbox" />
+                        <label asp-for="Parking" class="form-check-label"></label>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <label asp-for="HasGym"></label>
-            <input asp-for="HasGym" type="checkbox" />
+        <div class="form-group mb-3">
+            <h5 class="mb-3">Interests</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="Food" class="form-check-input" type="checkbox" />
+                        <label asp-for="Food" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Art" class="form-check-input" type="checkbox" />
+                        <label asp-for="Art" class="form-check-label"></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="History" class="form-check-input" type="checkbox" />
+                        <label asp-for="History" class="form-check-label"></label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Sports" class="form-check-input" type="checkbox" />
+                        <label asp-for="Sports" class="form-check-label"></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input asp-for="Shopping" class="form-check-input" type="checkbox" />
+                        <label asp-for="Shopping" class="form-check-label"></label>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <label asp-for="HasSpa"></label>
-            <input asp-for="HasSpa" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="HasRestaurant"></label>
-            <input asp-for="HasRestaurant" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Parking"></label>
-            <input asp-for="Parking" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Food"></label>
-            <input asp-for="Food" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Art"></label>
-            <input asp-for="Art" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="History"></label>
-            <input asp-for="History" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Sports"></label>
-            <input asp-for="Sports" type="checkbox" />
-        </div>
-
-        <div>
-            <label asp-for="Shopping"></label>
-            <input asp-for="Shopping" type="checkbox" />
-        </div>
-        <div class="form-group mt-3">
-            <label for="Image">Image</label>
+        <!-- Image Upload -->
+        <div class="form-group mb-3">
+            <label for="Image" class="form-label">Upload Image</label>
             <input type="file" class="form-control" id="Image" name="ImageFile" />
         </div>
-        <div class="form-group mt-3">
-            <button type="submit" class="btn btn-primary">Create Hotel</button>
-            <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+        <div class="form-group d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary px-4">Create Hotel</button>
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary px-4">Cancel</a>
         </div>
     </form>
 </div>

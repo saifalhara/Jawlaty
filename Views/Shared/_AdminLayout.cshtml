@@ -114,20 +114,57 @@
 
 <style>
     :root {
-        --bs-custom-rgb: 20, 39, 78;
-        --bs-custom: #14274E;
+        --bs-primary: #16697A;
+        --bs-secondary: #6c8e95;
+        --bs-dark: #14274E;
     }
 
-    .bg-custom {
-        --bs-bg-opacity: 1;
-        background-color: #16697A;
+    /* Navbar Customization */
+    .navbar-dark {
+        background-color: #212529;
     }
 
+    /* Sidebar Customization */
     .sb-sidenav-dark {
-        background-color: #16697A;
+        background-color: #212529;
     }
 
-        .sb-sidenav-dark .sb-sidenav-footer {
-            background-color: #6c8e95;
+    .sb-sidenav-footer {
+        background-color: var(--bs-secondary);
+    }
+
+    /* Footer Customization */
+    footer.bg-light {
+        background-color: #f8f9fa !important;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+        .btn-primary:hover {
+            background-color: #145a68;
+            border-color: #145a68;
         }
+
+    /* Sidebar Link Styling */
+    .sb-sidenav .nav-link {
+        color: #ffffff;
+    }
+
+        .sb-sidenav .nav-link:hover {
+            color: #c5d8df;
+        }
+
+        .sb-sidenav .nav-link .sb-nav-link-icon {
+            margin-right: 8px;
+        }
+
+    .sb-sidenav-footer {
+        text-align: center;
+        color: #ffffff;
+        font-weight: bold;
+    }
 </style>
